@@ -11,8 +11,8 @@ import numpy as np
 import pandas as pd
 import os
 url = 'https://www.google.com/search?q='
-google_search_api = "AIzaSyAB5Jaqdh98MZ8aMv9bBxdMynMhJGRBfGQ"
-google_engine_id = "74f117132b62c4715"
+google_search_api = ""
+google_engine_id = ""
 header = { 
 'User-Agent' : ('Mozilla/5.0 (Windows NT 10.0;Win64; x64)\
 AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98\
