@@ -10,15 +10,14 @@ import aiohttp
 import asyncio
 import time
 
+
 url = 'https://www.google.com/search?q='
-# google_search_api = "AIzaSyAB5Jaqdh98MZ8aMv9bBxdMynMhJGRBfGQ"
-google_search_api = "AIzaSyCGjN1g_Zf3iKLACjHyqKdH4H48MerwwKw"
-google_engine_id = "90131cbef1ea540b2"
 header = { 
-'User-Agent' : ('Mozilla/5.0 (Windows NT 10.0;Win64; x64)\
-AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98\
-Safari/537.36'), 
-} 
+    'User-Agent' : ('Mozilla/5.0 (Windows NT 10.0;Win64; x64)\
+    AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98\
+    Safari/537.36'), 
+    } 
+
 
 def google_search(search_term, api_key, cse_id, **kwargs):
     service = build("customsearch", "v1", developerKey=api_key)
@@ -50,7 +49,7 @@ async def main_get(urls):
     return ret
 
 
-async def search(q):
+async def search(q, google_search_api, google_engine_id):
     sub_questions = q['explanation']
     for i in sub_questions:
         tmptmp_res = {}
@@ -72,43 +71,17 @@ async def search(q):
                 url[response[0]]['content'] = doc
             else:
                 del url[response[0]]
-            
 
         cnt = 0
         for key in url:
             if cnt == 5:
                 break
-            tmptmptmp_res = {}
-            tmptmptmp_res['url'] = key
-            tmptmptmp_res['title'] = url[key]['title']
-            tmptmptmp_res['content'] = url[key]['content']
-            sub_questions[str(i)]['evidence_document'][cnt]=tmptmptmp_res
+            evidence_doc = {}
+            evidence_doc['url'] = key
+            evidence_doc['title'] = url[key]['title']
+            evidence_doc['content'] = url[key]['content']
+            sub_questions[str(i)]['evidence_document'][cnt] = evidence_doc
             cnt += 1
-
-        # idx=0
-        # cnt=0
-        # while(cnt<5):
-        #     if(items[idx]['link'][-3:]!="pdf"):
-        #         response = requests.get(items[idx]['link'], headers = header)
-        #         doc = response.text
-        #         docu = Document(doc)
-        #         docu = docu.summary()
-        #         docu = html_parser(docu)
-        #         docu = docu.strip()
-        #         content.append(docu)
-        #         title.append(items[idx]['title'])
-        #         url.append(items[idx]['link'])
-        #         cnt+=1
-        #         idx+=1
-        #     else:
-        #         idx+=1
-
-        # for k in range(0,5):
-        #     tmptmptmp_res = {}
-        #     tmptmptmp_res['url'] = url[k]
-        #     tmptmptmp_res['title'] = title[k]
-        #     tmptmptmp_res['content'] = content[k]
-        #     sub_questions[str(i)]['evidence_document'][str(k)]=tmptmptmp_res
        
     # json_file = json.dumps(q,ensure_ascii=False, indent=4)
     return q
