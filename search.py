@@ -65,5 +65,5 @@ def search(q)->json:
             tmptmptmp_res['score']
             sub_questions[str(i)]['evidence_document'][str(k)]=tmptmptmp_res
        
-    json_file = json.dumps(q,ensure_ascii=False, indent=4)
-    return json_file
+    # json_file = json.dumps(q,ensure_ascii=False, indent=4)
+    return q
