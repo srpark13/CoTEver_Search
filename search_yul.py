@@ -68,7 +68,7 @@ async def search(q, google_search_api, google_engine_id):
             if response[1] != None:
                 doc = Document(response[1]).summary()
                 doc = html_parser(doc).strip()
-                url[response[0]]['content'] = doc
+                url[response[0]]['document'] = doc
             else:
                 del url[response[0]]
 
@@ -79,8 +79,8 @@ async def search(q, google_search_api, google_engine_id):
             evidence_doc = {}
             evidence_doc['url'] = key
             evidence_doc['title'] = url[key]['title']
-            evidence_doc['content'] = url[key]['content']
-            sub_questions[str(i)]['evidence_document'][cnt] = evidence_doc
+            evidence_doc['document'] = url[key]['document']
+            sub_questions[str(i)]['evidence_document'][str(cnt)] = evidence_doc
             cnt += 1
        
     # json_file = json.dumps(q,ensure_ascii=False, indent=4)
