@@ -62,7 +62,6 @@ def search(q):
             tmptmptmp_res['url'] = url[k]
             tmptmptmp_res['title'] = title[k]
             tmptmptmp_res['content'] = content[k]
-            tmptmptmp_res['score']
             sub_questions[str(i)]['evidence_document'][str(k)]=tmptmptmp_res
        
     # json_file = json.dumps(q,ensure_ascii=False, indent=4)
