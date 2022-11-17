@@ -25,7 +25,7 @@ def html_parser(rough_html):
   parsed_content = re.sub(parse_re, '', rough_html)
   return parsed_content
 
-def search(q)->json:
+def search(q):
     sub_questions = q['explanation']
     res={}
     res['questions'] = []
